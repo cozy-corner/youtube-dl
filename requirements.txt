@@ -1,0 +1,11 @@
+###### Requirements without Version Specifiers ######`
+# DL
+youtube-dl
+
+# search
+google-api-python-client
+easydict
+requests
+pandas
+mysql-connector-python-rf 
+###### Requirements with Version Specifiers ######`

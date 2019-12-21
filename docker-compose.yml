@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+    # MySQL
+    db:
+        image: mysql:5.7
+        container_name: mysql_host
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: youtube_db
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: docker
+            TZ: 'Asia/Tokyo'
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        volumes:
+            - ./db/data:/var/lib/mysql
+            - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./db/sql:/docker-entrypoint-initdb.d
+        ports:
+            - 3306:3306
+
+    # Python
+    python3:
+        build:
+            
+            context: .
+            dockerfile: Dockerfile
+            args:
+                google_api_key: $GOOGLE_API_KEY
+        volumes:
+            - .:/usr/src/app
+        depends_on:
+            - db
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOSTS=mysql_host
+            - PMA_USER=root
+            - PMA_PASSWORD=root
