@@ -1,1 +1,3 @@
-/db/data
+/docker/db/data
+*.mp4
+*.csv

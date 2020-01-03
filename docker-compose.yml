@@ -14,24 +14,41 @@ services:
             TZ: 'Asia/Tokyo'
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         volumes:
-            - ./db/data:/var/lib/mysql
-            - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
-            - ./db/sql:/docker-entrypoint-initdb.d
+            - ./docker/db/data:/var/lib/mysql
+            - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./docker/db/sql:/docker-entrypoint-initdb.d
         ports:
             - 3306:3306
 
-    # Python
-    python3:
+    # docker exec -it mysql_host bash
+
+    # 動画一覧の取得
+    search:
         build:
-            
             context: .
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile_search
             args:
+                # hostの環境変数を渡す
                 google_api_key: $GOOGLE_API_KEY
         volumes:
             - .:/usr/src/app
         depends_on:
             - db
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOSTS=mysql_host
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+
+    # 動画のダウンロード
+    download:
+        build:
+            context: .
+            dockerfile: Dockerfile_download
+        volumes:
+            - .:/usr/src/app
+        depends_on:
+            - search
         environment:
             - PMA_ARBITRARY=1
             - PMA_HOSTS=mysql_host

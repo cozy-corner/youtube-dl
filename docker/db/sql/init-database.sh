@@ -3,4 +3,4 @@
 #sleep 90s
 
 #run the setup script to create the DB and the schema in the DB
-mysql -u docker -pdocker youtube_database < "/docker-entrypoint-initdb.d/create-tables.sql"
+mysql -u docker -pdocker youtube_db < "/docker-entrypoint-initdb.d/create-tables.sql"
