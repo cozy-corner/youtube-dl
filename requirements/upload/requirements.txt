@@ -1,0 +1,5 @@
+###### Requirements without Version Specifiers ######`
+# upload
+pandas
+mysql-connector-python-rf 
+###### Requirements with Version Specifiers ######`

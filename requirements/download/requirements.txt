@@ -1,0 +1,6 @@
+###### Requirements without Version Specifiers ######`
+# DL
+youtube-dl
+pandas
+mysql-connector-python-rf 
+###### Requirements with Version Specifiers ######`
