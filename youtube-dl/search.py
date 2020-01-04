@@ -1,11 +1,10 @@
 import os
 import time
-import requests
 import json
+import requests
 import pandas as pd
 import datetime as dt
 from  db import query
-import download
 
 API_KEY = os.environ['API_KEY']
 

@@ -24,3 +24,4 @@ def download():
         )
     return result
 
+download()

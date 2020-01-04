@@ -26,7 +26,7 @@ services:
     search:
         build:
             context: .
-            dockerfile: Dockerfile_search
+            dockerfile: ./Dockerfile/search/Dockerfile
             args:
                 # hostの環境変数を渡す
                 google_api_key: $GOOGLE_API_KEY
@@ -44,7 +44,7 @@ services:
     download:
         build:
             context: .
-            dockerfile: Dockerfile_download
+            dockerfile: ./Dockerfile/download/Dockerfile
         volumes:
             - .:/usr/src/app
         depends_on:
