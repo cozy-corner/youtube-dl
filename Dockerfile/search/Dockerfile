@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 ARG  google_api_key
 ENV API_KEY=$google_api_key
 
-COPY requirements.txt ./
+COPY ./requirements/search/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .

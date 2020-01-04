@@ -1,3 +1,4 @@
 /docker/db/data
 *.mp4
 *.csv
+*.mp4.part
